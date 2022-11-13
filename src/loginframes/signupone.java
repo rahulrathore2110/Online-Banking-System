@@ -196,7 +196,7 @@ public class signupone extends JFrame implements ActionListener {
 		
 		
 		setSize(850,800);
-		setLocation(250,10);
+		setLocation(150,10);
 		setVisible(true);
 		getContentPane().setBackground(Color.white);
 		
@@ -206,7 +206,7 @@ public class signupone extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
-		new signupone();
+		
 	}
 
 	@Override
@@ -248,8 +248,12 @@ public class signupone extends JFrame implements ActionListener {
 				try (Connection conn = DButil.provideConnection()){
 					
 					String query = "insert into signup values(?,?,?,?,?,?,?,?,?,?,?)";
+					String query2 = "insert into customerdetails(FormNO,Name,Father_Name,DOB,Gender,Email,Maritial,Address,City,State,Pincode) values(?,?,?,?,?,?,?,?,?,?,?)";
+					
+					
 					
 					PreparedStatement ps = conn.prepareStatement(query);
+					PreparedStatement ps2 = conn.prepareStatement(query2);
 					
 					ps.setString(1, formno);
 					ps.setString(2, name);
@@ -263,7 +267,20 @@ public class signupone extends JFrame implements ActionListener {
 					ps.setString(10, state);
 					ps.setString(11, pincode);
 					
+					ps2.setString(1, formno);
+					ps2.setString(2, name);
+					ps2.setString(3, fname);
+					ps2.setString(4, dob);
+					ps2.setString(5, gender);
+					ps2.setString(6, email);
+					ps2.setString(7, maritial);
+					ps2.setString(8, address);
+					ps2.setString(9, city);
+					ps2.setString(10, state);
+					ps2.setString(11, pincode);
+					
 					int x = ps.executeUpdate();
+					int x2 = ps2.executeUpdate();
 					
 					if(x > 0) {
 						JOptionPane.showMessageDialog(null, "Details Save Succesfull!");

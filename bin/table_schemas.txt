@@ -27,3 +27,76 @@ Aadhar varchar(20) NOT NULL UNIQUE,
 Seniou_Citizen varchar(10),
 Existing_Account varchar(10)
 );
+
+
+create table c_account
+(
+FormNO varchar(20) primary key,
+AccountType varchar(20) NOT NULL,
+AccountNumber varchar(20) NOT NULL UNIQUE,
+Username varchar(30) NOT NULL UNIQUE,
+Password varchar(20) NOT NULL
+);
+
+
+create table Adminaccount
+(
+Email varchar(20) NOT NULL UNIQUE,
+Username varchar(30) NOT NULL UNIQUE,
+Password varchar(20) NOT NULL
+);
+
+
+create table customerdetails
+(
+FormNO varchar(20) primary key,
+Name varchar(20),
+Father_Name varchar(20),
+DOB varchar(20),
+Gender varchar(20),
+Email varchar(30) NOT NULL UNIQUE,
+Maritial varchar(20),
+Address varchar(50),
+City varchar(20),
+State varchar(30),
+Pincode varchar(20),
+Religion varchar(20),
+Category varchar(20),
+Income varchar(20),
+Education varchar(20),
+Occupation varchar(30),
+PAN varchar(20),
+Aadhar varchar(20),
+Seniou_Citizen varchar(10),
+Existing_Account varchar(10),
+AccountType varchar(20),
+AccountNumber varchar(20),
+Username varchar(30),
+Password varchar(20),
+Accountbalance varchar (10)
+);
+
+
+create table transection
+(
+Date datetime default now(),
+username varchar(30),
+Deposit varchar(10),
+Withdraw varchar(10)
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

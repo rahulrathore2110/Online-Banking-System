@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import javax.swing.*;
 import BDUtils.DButil;
+import customer.accountopeningform;
 
 public class signuptwo extends JFrame implements ActionListener{
 		
@@ -178,7 +179,7 @@ public class signuptwo extends JFrame implements ActionListener{
 		
 		
 		setSize(850,800);
-		setLocation(250,10);
+		setLocation(150,10);
 		setVisible(true);
 		getContentPane().setBackground(Color.white);
 		
@@ -188,7 +189,8 @@ public class signuptwo extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-//		
+		
+
 	}
 
 	@Override
@@ -233,13 +235,14 @@ public class signuptwo extends JFrame implements ActionListener{
 				
 			}else {
 				
-			}
-				
-				try (Connection conn = DButil.provideConnection()){
+					try (Connection conn = DButil.provideConnection()){
 					
 					String query = "insert into signuptwo values(?,?,?,?,?,?,?,?,?,?)";
+					String query2 = "update customerdetails set Religion = ?,category=?,income=?,education=?,occupation=?,pan=?,aadhar=?,Seniou_Citizen=?,Existing_Account=? where FormNO = ?";
 					
 					PreparedStatement ps = conn.prepareStatement(query);
+					PreparedStatement ps2 = conn.prepareStatement(query2);
+					
 					
 					ps.setString(1, formno);
 					ps.setString(2, religion);
@@ -252,11 +255,27 @@ public class signuptwo extends JFrame implements ActionListener{
 					ps.setString(9, citizen);
 					ps.setString(10, ExAccount);
 					
+					ps2.setString(1, religion);
+					ps2.setString(2, category);
+					ps2.setString(3, income);
+					ps2.setString(4, education);
+					ps2.setString(5, occupation);
+					ps2.setString(6, pan);
+					ps2.setString(7, aadhar);
+					ps2.setString(8, citizen);
+					ps2.setString(9, ExAccount);
+					ps2.setString(10, formno);
+					
 					int x = ps.executeUpdate();
+					int x2 = ps2.executeUpdate();
+					
+					
 					
 					if(x > 0) {
-						JOptionPane.showMessageDialog(null, "Details Save Succesfull!");
+						JOptionPane.showMessageDialog(null, "Registered Succesfull!");
 						setVisible(false);
+						new accountopeningform(formno).setVisible(true);
+						
 					
 					}else
 						JOptionPane.showMessageDialog(null, "Signup Failed!");
@@ -264,10 +283,13 @@ public class signuptwo extends JFrame implements ActionListener{
 					
 				}catch (SQLException e2) {
 					e2.printStackTrace();
-					
+					JOptionPane.showMessageDialog(null, "Duplicate values!");
 				
 				
 				}
+			}
+				
+				
 				
 				
 					
