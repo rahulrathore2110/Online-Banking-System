@@ -36,7 +36,7 @@ public class deleteaccount extends JFrame implements ActionListener{
 		logo.setBounds(80, 30, 50, 50);
 		add(logo);
 		
-		welcome = new JLabel("DELETE USER BY ACCOUNT NUMBER");
+		welcome = new JLabel("DELETE USER BY USERNAME");
 		welcome.setFont(new Font("Osward", Font.BOLD,25));
 		welcome.setBounds(180, 30, 600, 50);
 		add(welcome);
@@ -82,19 +82,20 @@ public class deleteaccount extends JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String account = searchf.getText();
+		String username = searchf.getText();
 		
 		try (Connection conn = DButil.provideConnection()){
 			
-			PreparedStatement ps = conn.prepareStatement("delete from customerdetails where AccountNumber = ?");
-			ps.setString(1, account);
+			PreparedStatement ps = conn.prepareStatement("delete from customerdetails where username = ?");
+			ps.setString(1, username);
 			
 		int x =	ps.executeUpdate();
 		
 		if(x > 0) {
 			JOptionPane.showMessageDialog(null, "Account Deleted Succefully!");
+			setVisible(false);
 		}else {
-			JOptionPane.showMessageDialog(null, "Account Not Found!");
+			JOptionPane.showMessageDialog(null, "Account Not Exist!");
 		}
 			
 		} catch (SQLException e2) {

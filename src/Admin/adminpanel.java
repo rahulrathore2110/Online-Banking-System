@@ -11,12 +11,13 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import BDUtils.DButil;
+import loginframes.loginpage;
 import loginframes.signupone;
 
 public class adminpanel extends JFrame implements ActionListener{
 	String username;
 	JLabel welcome;
-	JButton all_acc,update_acc,delete_acc,search,transections;
+	JButton all_acc,update_acc,delete_acc,search,transections,exit;
 	
 	
 	
@@ -33,7 +34,7 @@ public class adminpanel extends JFrame implements ActionListener{
 		logo.setBounds(80, 30, 50, 50);
 		add(logo);
 		
-		welcome = new JLabel("SBI AdMIN DASHBOARD , WELCOME : "+ u1);
+		welcome = new JLabel("SBI ADMIN DASHBOARD , WELCOME : "+ u1);
 		welcome.setFont(new Font("Osward", Font.BOLD,25));
 		welcome.setBounds(180, 30, 600, 50);
 		add(welcome);
@@ -78,6 +79,14 @@ public class adminpanel extends JFrame implements ActionListener{
 		transections.setForeground(Color.white);
 		transections.addActionListener(this);
 		add(transections);
+		
+		exit = new JButton("EXIT");
+		exit.setFont(new Font("Ralway", Font.BOLD,13));
+		exit.setBounds(1100, 120, 100, 40);
+		exit.setBackground(Color.black);
+		exit.setForeground(Color.white);
+		exit.addActionListener(this);
+		add(exit);
 		
 		
 		
@@ -271,8 +280,7 @@ public class adminpanel extends JFrame implements ActionListener{
 	}
 
 	public static void main(String[] args) {
-		
-//		new adminpanel(username);
+	
 		
 	}
 
@@ -281,6 +289,8 @@ public class adminpanel extends JFrame implements ActionListener{
 
 		if(e.getSource() == update_acc) {
 			
+			updateuser up = new updateuser();
+			up.setVisible(true);
 			
 			
 			
@@ -300,6 +310,12 @@ public class adminpanel extends JFrame implements ActionListener{
 		}else if(e.getSource() == transections) {
 			admintrasection ad = new admintrasection(username);
 			ad.setVisible(true);
+			
+			
+		}else if(e.getSource() == exit) {
+			
+			setVisible(false);
+			new loginpage().setVisible(true);
 			
 			
 		}

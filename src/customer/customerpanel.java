@@ -9,6 +9,7 @@ import java.sql.*;
 import javax.swing.*;
 
 import BDUtils.DButil;
+import loginframes.loginpage;
 
 public class customerpanel extends JFrame implements ActionListener{
 
@@ -29,8 +30,8 @@ public class customerpanel extends JFrame implements ActionListener{
 		add(logo);
 		
 		welcome = new JLabel();
-		welcome.setFont(new Font("Osward", Font.BOLD,40));
-		welcome.setBounds(180, 40, 400, 80);
+		welcome.setFont(new Font("Osward", Font.BOLD,30));
+		welcome.setBounds(180, 40, 600, 80);
 		add(welcome);
 		
 		try (Connection conn = DButil.provideConnection()){
@@ -102,7 +103,7 @@ public class customerpanel extends JFrame implements ActionListener{
 	}
 	
 	public static void main(String[] args) {
-		new customerpanel("vvv");
+		
 	}
 
 	@Override
@@ -111,7 +112,7 @@ public class customerpanel extends JFrame implements ActionListener{
 		if(e.getSource() == exit) {
 			
 			setVisible(false);
-			
+			new loginpage();
 			
 			
 		}else if(e.getSource() == deposite) {

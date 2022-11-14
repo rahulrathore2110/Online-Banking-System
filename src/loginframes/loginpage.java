@@ -126,7 +126,7 @@ public class loginpage extends JFrame implements ActionListener{
 			
 			
 		}else if(e.getSource() == csignup) {
-			System.out.println("dfsdf");
+			
 			setVisible(false);
 			new signupone().setVisible(true);
 		}else if(e.getSource() == asignup) {
@@ -177,7 +177,7 @@ public class loginpage extends JFrame implements ActionListener{
 				
 			}else {
 				
-				System.out.println("c");
+				
 				String u1 = usernamef.getText();
 				String p1 = (String) passwordf.getText();
 				
@@ -189,7 +189,7 @@ public class loginpage extends JFrame implements ActionListener{
 					ps.setString(2, p1);
 					
 					ResultSet rs =  ps.executeQuery();
-					System.out.println(rs);
+					
 					
 					if(rs.next()) {
 						
